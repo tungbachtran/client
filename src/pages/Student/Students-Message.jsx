@@ -9,7 +9,6 @@ import MessageStudentListModal from './MessageStudentListModal'
 function MessageStudent({ user, setLoading }) {
     document.title = 'Tin nhắn lớp học phần'
 
-    const navigate = useHistory()
     const [searchText, setSearchText] = useState('') // Không cần selectedClass nữa
     const [courseClasses, setCourseClasses] = useState([])
     const [messages, setMessages] = useState([]) // Thêm state để chứa danh sách tin nhắn
@@ -109,7 +108,7 @@ function MessageStudent({ user, setLoading }) {
             const { data: fetchedMessages } = await axios.get(
                 `http://localhost:5148/api/messages/${courseClassId}`
             )
-            setMessages(fetchedMessages) // Cập nhật danh sách tin nhắn khi nhấn "Xem"
+            setMessages(fetchedMessages) // Cập nhật danh sách tin nhắn khi nhấn "Xem
             console.log(user.name)
         } catch (err) {
             console.error(err) // Xử lý lỗi nếu có

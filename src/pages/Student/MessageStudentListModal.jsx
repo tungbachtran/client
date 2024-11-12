@@ -3,7 +3,7 @@ import { Modal, Input, Button } from 'antd'
 import axios from 'axios'
 import * as signalR from '@microsoft/signalr'
 
-function MessageStudentListModal({ messages, isVisible, onClose, info, classId, setMessages }) {
+function MessageStudentListModal({ messages, isVisible, onClose, info, classId }) {
     const [newMessage, setNewMessage] = useState('')
     const [messagesWithSenderNames, setMessagesWithSenderNames] = useState([])
     const [connection, setConnection] = useState(null)

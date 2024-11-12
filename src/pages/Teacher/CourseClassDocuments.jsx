@@ -4,7 +4,7 @@ import { PlusOutlined, UploadOutlined } from '@ant-design/icons'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
 
-export default function CourseClassDocuments({ user, setLoading }) {
+export default function CourseClassDocuments({ setLoading }) {
     const { courseClassId } = useParams()
     const [documents, setDocuments] = useState([])
     const [isAddModalVisible, setIsAddModalVisible] = useState(false)
