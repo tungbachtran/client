@@ -6,7 +6,7 @@ import GenerateAccounts from './Generate'
 import { Radio } from 'antd'
 import { useHistory } from 'react-router-dom'
 export default function AccountManagement({ setLoading }) {
-    let { path, url } = useRouteMatch()
+    let { path } = useRouteMatch()
     const navigate = useHistory()
     const handleFnSelect = (e) => {
         navigate.push(`${path}/${e.target.value}`)

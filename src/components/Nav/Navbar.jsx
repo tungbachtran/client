@@ -5,7 +5,7 @@ import axios from 'axios'
 
 const Navbar = ({ user, handleLogout }) => {
     const [profileImage, setProfileImage] = useState('')
-    const [loading, setLoading] = useState(false)
+    const [, setLoading] = useState(false)
     const [error, setError] = useState(false) // Thêm state để theo dõi lỗi kết nối ban đầu
 
     const fetchData = async () => {

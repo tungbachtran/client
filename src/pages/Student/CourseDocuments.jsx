@@ -126,6 +126,8 @@ export default function CourseDocuments({ setLoading, user }) {
             console.log(err)
         }
     }
+    console.log(handleUnregister)
+    console.log(selectedCourseClassId)
 
     const handleShowDocuments = async (courseClassId) => {
         try {

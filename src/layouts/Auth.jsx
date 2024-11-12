@@ -3,8 +3,8 @@ import { Switch, useRouteMatch, Route, Redirect } from 'react-router-dom'
 import Login from '../pages/Auth/Login'
 import ForgotPassword from '../pages/Auth/ForgotPassword'
 import Loading from '../components/Loading'
-export default function Auth(props) {
-    let { path, url } = useRouteMatch()
+export default function Auth() {
+    let { path } = useRouteMatch()
     const [loading, setLoading] = useState(false)
 
     return (

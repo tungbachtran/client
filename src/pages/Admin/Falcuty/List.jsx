@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Table, Tooltip, Select, Button, Modal } from 'antd'
+import { Table, Tooltip, Button, Modal } from 'antd'
 import axios from 'axios'
 
 export default function FacultysList({ setLoading }) {

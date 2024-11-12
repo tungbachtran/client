@@ -25,7 +25,7 @@ import MessageTeacher from './../pages/Teacher/Teacher-Message'
 import MessageStudent from './../pages/Student/Students-Message'
 
 export default function LoggedView({ user, handleLogout }) {
-    let { path, url } = useRouteMatch()
+    let { url } = useRouteMatch()
 
     const [loading, setLoading] = useState(false)
     const customSetLoading = (state) => {

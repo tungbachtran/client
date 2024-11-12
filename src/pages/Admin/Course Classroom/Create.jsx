@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Form, Input, InputNumber, Button, Select } from 'antd'
 import MsgModal from '../../../components/MsgModal'
@@ -88,6 +88,7 @@ export default function CreateCourse({ setLoading }) {
                         'http://localhost:5148/api/schedules',
                         session
                     )
+                    console.log(response)
                 } catch (err) {
                     // Xử lý lỗi ở đây nếu việc đăng lịch không thành công
                     await axios.delete(
@@ -122,7 +123,6 @@ export default function CreateCourse({ setLoading }) {
             setLoading(false)
         }
     }
-
     const handleSessionsChange = (e) => {
         setSessions(e)
     }
