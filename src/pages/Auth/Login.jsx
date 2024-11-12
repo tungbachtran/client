@@ -27,7 +27,7 @@ export default function Login({ setLoading }) {
         e.preventDefault()
         setLoading(true)
         try {
-            const { data: jwt } = await axios.post('http://localhost:5148/api/account/login', {
+            const { data: jwt } = await axios.post('http://192.168.1.7:5148/api/account/login', {
                 username: username,
                 password: pwd
             })

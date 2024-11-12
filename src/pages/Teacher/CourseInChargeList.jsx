@@ -170,7 +170,7 @@ export default function CourseInChargeList({ setLoading, user }) {
             setLoading(true)
             try {
                 const { data: courseClasses } = await axios.get(
-                    `http://localhost:5148/api/user/teacher/course-classroom/${user.name}`
+                    `http://192.168.1.7:5148/api/user/teacher/course-classroom/${user.name}`
                 )
                 console.log('classes: ', courseClasses)
                 const data = []
@@ -178,7 +178,7 @@ export default function CourseInChargeList({ setLoading, user }) {
                     let item = courseClasses[index]
                     if (item.courseClassroom.isComplete) continue
                     let { data: course } = await axios.get(
-                        `http://localhost:5148/api/course/${item.courseClassroom.courseId}`
+                        `http://192.168.1.7:5148/api/course/${item.courseClassroom.courseId}`
                     )
                     data.push({
                         courseClassId: item.courseClassroom.courseClassId,

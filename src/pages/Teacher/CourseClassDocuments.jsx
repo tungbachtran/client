@@ -32,7 +32,7 @@ export default function CourseClassDocuments({ setLoading }) {
         setLoading(true)
         try {
             const response = await axios.get(
-                `http://localhost:5148/api/course-classroom/${courseClassId}`
+                `http://192.168.1.7:5148/api/course-classroom/${courseClassId}`
             )
             setTitleId(response.data.courseClassroom.courseId)
         } catch (error) {
@@ -45,7 +45,7 @@ export default function CourseClassDocuments({ setLoading }) {
     const fetchTitle = async () => {
         setLoading(true)
         try {
-            const response = await axios.get(`http://localhost:5148/api/course/${titleId}`)
+            const response = await axios.get(`http://192.168.1.7:5148/api/course/${titleId}`)
             setTitle(response.data.name)
         } catch (error) {
             console.error('Lỗi khi tải tài liệu:', error)
@@ -57,7 +57,7 @@ export default function CourseClassDocuments({ setLoading }) {
     const fetchDocuments = async () => {
         setLoading(true)
         try {
-            const response = await axios.get(`http://localhost:5148/api/documents/${courseClassId}`)
+            const response = await axios.get(`http://192.168.1.7:5148/api/documents/${courseClassId}`)
             setDocuments(response.data || [])
         } catch (error) {
             console.error('Lỗi khi tải tài liệu:', error)
@@ -80,7 +80,7 @@ export default function CourseClassDocuments({ setLoading }) {
 
         try {
             await axios.post(
-                `http://localhost:5148/api/documents/${courseClassId}?Content=${values.name}`,
+                `http://192.168.1.7:5148/api/documents/${courseClassId}?Content=${values.name}`,
                 formData
             )
             message.success('Đã thêm tài liệu thành công.')
@@ -94,7 +94,7 @@ export default function CourseClassDocuments({ setLoading }) {
 
     const handleDelete = async (documentId) => {
         try {
-            await axios.delete(`http://localhost:5148/api/documents/${documentId}`)
+            await axios.delete(`http://192.168.1.7:5148/api/documents/${documentId}`)
             message.success('Đã xóa tài liệu.')
 
             // Cập nhật danh sách tài liệu ngay lập tức mà không cần gọi fetchDocuments

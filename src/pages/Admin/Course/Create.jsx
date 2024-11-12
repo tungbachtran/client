@@ -17,7 +17,7 @@ export default function CreateCourse({ setLoading }) {
     const fetchData = async () => {
         setLoading(true)
         try {
-            const { data } = await axios.get('http://localhost:5148/api/course')
+            const { data } = await axios.get('http://192.168.1.7:5148/api/course')
             setCourses(
                 [
                     {
@@ -49,7 +49,7 @@ export default function CreateCourse({ setLoading }) {
                 credits: e.credits,
                 requiredCourseId: e.requiredCourse
             }
-            await axios.post('http://localhost:5148/api/course', data)
+            await axios.post('http://192.168.1.7:5148/api/course', data)
             fetchData()
             setModal({
                 isShow: true,

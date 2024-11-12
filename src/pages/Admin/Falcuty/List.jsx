@@ -83,7 +83,7 @@ export default function FacultysList({ setLoading }) {
         const fetchFaculties = async () => {
             try {
                 setLoading(true)
-                const { data } = await axios.get('http://localhost:5148/api/faculty/')
+                const { data } = await axios.get('http://192.168.1.7:5148/api/faculty/')
                 setFaculties(data)
             } catch (err) {
                 console.error('Error fetching faculties:', err)
@@ -101,7 +101,7 @@ export default function FacultysList({ setLoading }) {
             setLoading(true)
             setSelectedFaculty(faculty)
             const { data: classesData } = await axios.get(
-                `http://localhost:5148/api/classroom/by-faculty/${faculty.facultyId}`
+                `http://192.168.1.7:5148/api/classroom/by-faculty/${faculty.facultyId}`
             )
             setClasses(classesData)
             setIsModalVisible(true)
@@ -117,7 +117,7 @@ export default function FacultysList({ setLoading }) {
     const handleDeleteFaculty = async (id) => {
         try {
             setLoading(true)
-            await axios.delete(`http://localhost:5148/api/faculty/${id}`)
+            await axios.delete(`http://192.168.1.7:5148/api/faculty/${id}`)
             setFaculties(faculties.filter((faculty) => faculty.facultyId !== id))
             alert('Xóa khoa thành công')
         } catch (err) {

@@ -15,7 +15,7 @@ export default function ManageSingleUserModal() {
     const formRef = useRef(null)
     useEffect(() => {
         axios
-            .get(`http://localhost:5148/api/course-classroom/${id}`)
+            .get(`http://192.168.1.7:5148/api/course-classroom/${id}`)
             .then((res) => {
                 formRef.current.setFieldsValue({
                     id: id,

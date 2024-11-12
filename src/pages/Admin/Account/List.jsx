@@ -67,7 +67,7 @@ export default function UserList({ setLoading }) {
     useEffect(() => {
         setLoading(true)
         axios
-            .get('http://localhost:5148/api/faculty/')
+            .get('http://192.168.1.7:5148/api/faculty/')
             .then((res) => {
                 setFaculties(res.data)
                 setLoading(false)
@@ -84,7 +84,7 @@ export default function UserList({ setLoading }) {
         if (data.facultyId === 0) {
             let temp = []
             axios
-                .get(`http://localhost:5148/api/classroom`)
+                .get(`http://192.168.1.7:5148/api/classroom`)
                 .then((res) => {
                     temp = res.data
                     temp = temp.map((_class) => {
@@ -116,7 +116,7 @@ export default function UserList({ setLoading }) {
             }
         ]
         axios
-            .get(`http://localhost:5148/api/faculty/classes/${data.facultyId}`)
+            .get(`http://192.168.1.7:5148/faculty/classes/${data.facultyId}`)
             .then((res) => {
                 temp = temp.concat(
                     res.data.map((_class) => {
@@ -144,7 +144,7 @@ export default function UserList({ setLoading }) {
         //handle select multiple class in faculty
         if (data.id === 0) {
             axios
-                .get(`http://localhost:5148/api/user/faculty/${data.faculty}`)
+                .get(`http://192.168.1.7:5148/api/user/faculty/${data.faculty}`)
                 .then((res) => {
                     let tempData = []
                     res.data.forEach((singleClass) => {
@@ -175,7 +175,7 @@ export default function UserList({ setLoading }) {
 
         // handle select single class
         axios
-            .get(`http://localhost:5148/api/user/class/${data.id}`)
+            .get(`http://192.168.1.7:5148/api/user/class/${data.id}`)
             .then((res) => {
                 let tempData = []
                 let currentClassName = data.name
@@ -204,7 +204,7 @@ export default function UserList({ setLoading }) {
 
     const handleDeleteUser = (id) => {
         axios
-            .delete(`http://localhost:5148/api/user/${id}`)
+            .delete(`http://192.168.1.7:5148/api/user/${id}`)
             .then(() => {
                 setData(data.filter((user) => user.key !== id))
             })

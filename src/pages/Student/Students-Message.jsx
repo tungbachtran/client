@@ -106,7 +106,7 @@ function MessageStudent({ user, setLoading }) {
             setSelectedClassId(courseClassId)
             setLoading(true) // Bật trạng thái loading trước khi gọi API
             const { data: fetchedMessages } = await axios.get(
-                `http://localhost:5148/api/messages/${courseClassId}`
+                `http://192.168.1.7:5148/api/messages/${courseClassId}`
             )
             setMessages(fetchedMessages) // Cập nhật danh sách tin nhắn khi nhấn "Xem
             console.log(user.name)
@@ -122,13 +122,13 @@ function MessageStudent({ user, setLoading }) {
             setLoading(true)
             try {
                 const { data: courseClasses } = await axios.get(
-                    `http://localhost:5148/api/course-classroom/user/${user.name}`
+                    `http://192.168.1.7:5148/api/course-classroom/user/${user.name}`
                 )
                 const data = []
                 for (let item of courseClasses) {
                     if (item.courseClassroom.isComplete) continue
                     const { data: course } = await axios.get(
-                        `http://localhost:5148/api/course/${item.courseClassroom.courseId}`
+                        `http://192.168.1.7:5148/api/course/${item.courseClassroom.courseId}`
                     )
                     data.push({
                         courseClassId: item.courseClassroom.courseClassId,

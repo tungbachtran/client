@@ -27,7 +27,7 @@ export default function CreateAccount({ setLoading }) {
     useEffect(() => {
         setLoading(true)
         axios
-            .get('http://localhost:5148/api/faculty/')
+            .get('http://192.168.1.7:5148/api/faculty/')
             .then((res) => {
                 setFaculties(res.data)
                 setLoading(false)
@@ -53,7 +53,7 @@ export default function CreateAccount({ setLoading }) {
         })
 
         axios
-            .get(`http://localhost:5148/api/faculty/classes/${data.facultyId}`)
+            .get(`http://192.168.1.7:5148/api/faculty/classes/${data.facultyId}`)
             .then((res) => {
                 setClasses(res.data)
             })
@@ -107,7 +107,7 @@ export default function CreateAccount({ setLoading }) {
         setLoading(true)
         try {
             const res = await axios.post(
-                'http://localhost:5148/api/account/register',
+                'http://192.168.1.7:5148/api/account/register',
                 formDataToSend
             )
             setModal({

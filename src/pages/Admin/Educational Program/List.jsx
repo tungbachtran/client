@@ -85,7 +85,7 @@ export default function UserList({ setLoading }) {
     const handleDelete = async (id) => {
         setLoading(true)
         try {
-            await axios.delete(`http://localhost:5148/api/education-program/${id}`)
+            await axios.delete(`http://192.168.1.7:5148/api/education-program/${id}`)
             setPrograms(programs.filter((item) => item.educationalProgramId !== id))
         } catch (err) {
             console.log(err)
@@ -97,7 +97,7 @@ export default function UserList({ setLoading }) {
         const fetchData = async () => {
             setLoading(true)
             try {
-                const { data } = await axios.get('http://localhost:5148/api/education-program/')
+                const { data } = await axios.get('http://192.168.1.7:5148/api/education-program/')
                 setPrograms(data.filter((item) => item.educationalProgramId !== 'GV'))
             } catch (err) {
                 console.log(err)

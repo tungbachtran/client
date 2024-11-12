@@ -119,7 +119,7 @@ export default function CourseDocuments({ setLoading, user }) {
     const handleUnregister = async (courseClassId) => {
         try {
             await axios.delete(
-                `http://localhost:5148/api/course-classroom/user/${user.name}/${courseClassId}`
+                `http://192.168.1.7:5148/api/course-classroom/user/${user.name}/${courseClassId}`
             )
             setCourseClasses(courseClasses.filter((item) => item.courseClassId !== courseClassId))
         } catch (err) {
@@ -132,7 +132,7 @@ export default function CourseDocuments({ setLoading, user }) {
     const handleShowDocuments = async (courseClassId) => {
         try {
             setLoading(true)
-            const { data } = await axios.get(`http://localhost:5148/api/documents/${courseClassId}`)
+            const { data } = await axios.get(`http://192.168.1.7:5148/api/documents/${courseClassId}`)
             setDocuments(data)
             console.log(data)
             setSelectedCourseClassId(courseClassId)
@@ -180,12 +180,12 @@ export default function CourseDocuments({ setLoading, user }) {
             setLoading(true)
             try {
                 const { data: courseClasses } = await axios.get(
-                    `http://localhost:5148/api/course-classroom/user/${user.name}`
+                    `http://192.168.1.7:5148/api/course-classroom/user/${user.name}`
                 )
                 const data = []
                 courseClasses.forEach(async (item) => {
                     const { data: course } = await axios.get(
-                        `http://localhost:5148/api/course/${item.courseClassroom.courseId}`
+                        `http://192.168.1.7:5148/api/course/${item.courseClassroom.courseId}`
                     )
                     data.push({
                         courseClassId: item.courseClassroom.courseClassId,

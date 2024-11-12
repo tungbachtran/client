@@ -72,7 +72,7 @@ export default function ClassList({ setLoading }) {
         const fetchData = async () => {
             try {
                 setLoading(true)
-                const { data } = await axios.get('http://localhost:5148/api/faculty/')
+                const { data } = await axios.get('http://192.168.1.7:5148/api/faculty/')
                 setFaculties([{ facultyId: 0, name: 'Tất cả' }, ...data])
             } catch (err) {
                 setLoading(false)
@@ -89,7 +89,7 @@ export default function ClassList({ setLoading }) {
         setLoading(true)
         if (data.facultyId === 0) {
             try {
-                const { data: classesData } = await axios.get('http://localhost:5148/api/classroom')
+                const { data: classesData } = await axios.get(`http://192.168.1.7:5148/api/classroom`)
                 setClasses(
                     classesData.map((_class) => {
                         return {
@@ -116,7 +116,7 @@ export default function ClassList({ setLoading }) {
 
         try {
             const { data: classesData } = await axios.get(
-                `http://localhost:5148/api/faculty/classes/${data.facultyId}`
+                `http://192.168.1.7:5148/api/faculty/classes/${data.facultyId}`
             )
             setClasses(
                 classesData.map((_class) => {
@@ -146,7 +146,7 @@ export default function ClassList({ setLoading }) {
     const handleDelete = async (id) => {
         setLoading(true)
         try {
-            await axios.delete(`http://localhost:5148/api/classroom/${id}`)
+            await axios.delete(`http://192.168.1.7:5148/api/classroom/${id}`)
             fetchClasses(selectedFaculty)
             setClasses(classes.filter((_class) => _class.key != id)) //don't use !== here
         } catch (err) {

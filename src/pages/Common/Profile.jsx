@@ -41,7 +41,7 @@ export default function Profile({ user, handleLogout, setLoading }) {
     const fetchData = async () => {
         setLoading(true)
         try {
-            const { data } = await axios.get(`http://localhost:5148/api/user/${user.name}`)
+            const { data } = await axios.get(`http://192.168.1.7:5148/api/user/${user.name}`)
             setInfo(data)
         } catch (err) {
             alert('Không thể kết nối đến server')
@@ -64,7 +64,7 @@ export default function Profile({ user, handleLogout, setLoading }) {
         }
         setLoading(true)
         try {
-            await axios.put(`http://localhost:5148/api/user/${user.name}`, data)
+            await axios.put(`http://192.168.1.7:5148/api/user/${user.name}`, data)
             fetchData()
             setIsEditing(false)
         } catch (err) {

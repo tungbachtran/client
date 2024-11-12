@@ -15,7 +15,8 @@
         "react/react-in-jsx-scope": "off",
         "react/jsx-closing-bracket-location": [1, "tag-aligned"],
         "linebreak-style": ["error", "unix"],
-        "no-unused-vars": "warn"
+        "no-unused-vars": "warn",
+        "prettier/prettier": "warn"
     },
     "ignorePatterns": ["*.config.js"]
 }

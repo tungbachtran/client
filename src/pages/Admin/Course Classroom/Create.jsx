@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import axios from 'axios'
 import { Form, Input, InputNumber, Button, Select } from 'antd'
 import MsgModal from '../../../components/MsgModal'
@@ -20,11 +20,11 @@ export default function CreateCourse({ setLoading }) {
         const fetchData = async () => {
             setLoading(true)
             try {
-                const { data: coursesData } = await axios.get('http://localhost:5148/api/course')
+                const { data: coursesData } = await axios.get('http://192.168.1.7:5148/api/course')
                 setCourses(coursesData)
 
                 const { data: facultiesData } = await axios.get(
-                    'http://localhost:5148/api/faculty/'
+                    'http://192.168.1.7:5148/api/faculty/'
                 )
                 setFaculties(facultiesData)
             } catch (err) {
@@ -79,20 +79,19 @@ export default function CreateCourse({ setLoading }) {
 
         setLoading(true)
         try {
-            await axios.post('http://localhost:5148/api/course-classroom', data)
+            await axios.post('http://192.168.1.7:5148/api/course-classroom', data)
 
             for (let session of schedule) {
                 try {
                     // Kiểm tra xung đột lịch trước khi gửi
                     const response = await axios.post(
-                        'http://localhost:5148/api/schedules',
+                        'http://192.168.1.7:5148/api/schedules',
                         session
                     )
-                    console.log(response)
                 } catch (err) {
                     // Xử lý lỗi ở đây nếu việc đăng lịch không thành công
                     await axios.delete(
-                        `http://localhost:5148/api/course-classroom/${e.courseClassId}`
+                        `http://192.168.1.7:5148/api/course-classroom/${e.courseClassId}`
                     )
                     setModal({
                         isShow: true,
@@ -123,6 +122,7 @@ export default function CreateCourse({ setLoading }) {
             setLoading(false)
         }
     }
+
     const handleSessionsChange = (e) => {
         setSessions(e)
     }
@@ -131,7 +131,7 @@ export default function CreateCourse({ setLoading }) {
         setLoading(true)
         try {
             const { data: teachersData } = await axios.get(
-                `http://localhost:5148/api/faculty/users/${facultyId}`
+                `http://192.168.1.7:5148/api/faculty/users/${facultyId}`
             )
             setTeachers(teachersData)
         } catch (err) {
