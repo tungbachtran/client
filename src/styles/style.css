@@ -1,0 +1,29 @@
+.messages-container {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.message-bubble {
+    padding: 10px;
+    margin: 8px;
+    border-radius: 8px;
+    max-width: 70%;
+}
+
+.message-bubble.sent {
+    background-color: #d1e7dd;
+    align-self: flex-end;
+}
+
+.message-bubble.received {
+    background-color: #f8d7da;
+    align-self: flex-start;
+}
+
+.timestamp {
+    font-size: 0.8em;
+    color: gray;
+    margin-top: 5px;
+    display: block;
+    text-align: right;
+}
