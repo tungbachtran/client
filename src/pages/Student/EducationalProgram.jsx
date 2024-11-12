@@ -129,16 +129,16 @@ export default function EduProgramDetail({ setLoading, user }) {
             setLoading(true)
             try {
                 const { data: userInfor } = await axios.get(
-                    `http://192.168.1.7:5148/api/user/${user.name}`
+                    `https://192.168.1.7:5001/api/user/${user.name}`
                 )
                 const educationalProgramId = userInfor.educationalProgram.educationalProgramId
 
                 const { data: programData } = await axios.get(
-                    `http://192.168.1.7:5148/api/education-program/${educationalProgramId}`
+                    `https://192.168.1.7:5001/api/education-program/${educationalProgramId}`
                 )
                 setProgram(programData)
                 const { data: coursesData } = await axios.get(
-                    `http://192.168.1.7:5148/api/education-program/course/${educationalProgramId}`
+                    `https://192.168.1.7:5001/api/education-program/course/${educationalProgramId}`
                 )
                 setCourses(
                     coursesData

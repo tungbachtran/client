@@ -23,7 +23,7 @@ export default function ManageSingleUserModal({ handleDeleteClass }) {
     const formRef = useRef(null)
     useEffect(() => {
         axios
-            .get(`http://192.168.1.7:5148/api/classroom/${id}`)
+            .get(`https://192.168.1.7:5001/api/classroom/${id}`)
             .then((res) => {
                 setFormData(res.data)
                 formRef.current.setFieldsValue({

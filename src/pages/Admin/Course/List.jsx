@@ -126,7 +126,7 @@ export default function UserList({ setLoading }) {
         console.log(index, newCourse)
         setLoading(true)
         try {
-            await axios.put(`http://192.168.1.7:5148/api/course`, newCourse)
+            await axios.put(`https://192.168.1.7:5001/api/course`, newCourse)
             courses[index].isAvailable = e
         } catch (err) {
             console.log(err)
@@ -137,7 +137,7 @@ export default function UserList({ setLoading }) {
 
     const handleDelete = async (courseId) => {
         try {
-            await axios.delete(`http://192.168.1.7:5148/api/course/${courseId}`)
+            await axios.delete(`https://192.168.1.7:5001/api/course/${courseId}`)
             setCourses(courses.filter((item) => item.courseId !== courseId))
         } catch (err) {
             console.log(err)
@@ -148,7 +148,7 @@ export default function UserList({ setLoading }) {
         const fetchData = async () => {
             setLoading(true)
             try {
-                const { data } = await axios.get('http://192.168.1.7:5148/api/course/')
+                const { data } = await axios.get('https://192.168.1.7:5001/api/course/')
                 console.log(data)
                 setCourses(data)
             } catch (err) {

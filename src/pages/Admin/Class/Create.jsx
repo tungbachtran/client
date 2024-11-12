@@ -18,9 +18,9 @@ export default function CreateClass({ setLoading }) {
         const fetchData = async () => {
             setLoading(true)
             try {
-                let resFaculties = await axios.get('http://192.168.1.7:5148/api/faculty')
+                let resFaculties = await axios.get('https://192.168.1.7:5001/api/faculty')
                 setFaculties(resFaculties.data)
-                let resPrograms = await axios.get('http://192.168.1.7:5148/api/education-program')
+                let resPrograms = await axios.get('https://192.168.1.7:5001/api/education-program')
                 setPrograms(resPrograms.data.filter((item) => item.educationalProgramId !== '0000'))
             } catch (err) {
                 console.error('error:', err.message)
@@ -40,7 +40,7 @@ export default function CreateClass({ setLoading }) {
             educationalProgramId: e.program
         }
         try {
-            await axios.post(`http://192.168.1.7:5148/api/classroom`, data)
+            await axios.post(`https://192.168.1.7:5001/api/classroom`, data)
             setModal({
                 isShow: true,
                 Fn: () => setModal({ ...modal, isShow: false }),

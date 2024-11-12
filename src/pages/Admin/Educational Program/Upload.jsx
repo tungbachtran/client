@@ -56,7 +56,7 @@ export default function UploadEducationalProgram({ setLoading }) {
             console.log(formData)
             try {
                 await axios.post(
-                    'http://192.168.1.7:5148/api/education-program/upload-file',
+                    'https://192.168.1.7:5001/api/education-program/upload-file',
                     formData
                 )
                 setSuccess(true)

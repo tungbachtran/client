@@ -55,7 +55,7 @@ export default function UploadCourse({ setLoading }) {
             formData.append('fileName', file.name)
             console.log(formData)
             try {
-                await axios.post('http://192.168.1.7:5148/api/course/upload-file', formData)
+                await axios.post('https://192.168.1.7:5001/api/course/upload-file', formData)
                 setSuccess(true)
             } catch (err) {
                 setModal({

@@ -26,11 +26,11 @@ export default function AddCourseToProgram({ setLoading }) {
             setLoading(true)
             try {
                 const { data: programData } = await axios.get(
-                    `http://192.168.1.7:5148/api/education-program/${id}`
+                    `https://192.168.1.7:5001/api/education-program/${id}`
                 )
                 setProgram(programData)
 
-                const { data: coursesData } = await axios.get('http://192.168.1.7:5148/api/course')
+                const { data: coursesData } = await axios.get('https://192.168.1.7:5001/api/course')
                 setCourses(coursesData)
             } catch (err) {
                 console.log(err)
@@ -48,7 +48,7 @@ export default function AddCourseToProgram({ setLoading }) {
         }
         setLoading(true)
         try {
-            await axios.post('http://192.168.1.7:5148/api/education-program/course', data)
+            await axios.post('https://192.168.1.7:5001/api/education-program/course', data)
 
             setModal({
                 isShow: true,

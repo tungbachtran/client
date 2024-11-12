@@ -21,7 +21,7 @@ export default function ManageSingleUserModal({ handleDeleteUser }) {
     const formRef = useRef(null)
     useEffect(() => {
         axios
-            .get(`http://192.168.1.7:5148/api/user/${id}`)
+            .get(`https://192.168.1.7:5001/api/user/${id}`)
             .then((res) => {
                 formRef.current.setFieldsValue({
                     id: id,
@@ -44,7 +44,7 @@ export default function ManageSingleUserModal({ handleDeleteUser }) {
 
     const handleEdit = async (e) => {
         try {
-            await axios.put(`http://192.168.1.7:5148/api/user/${id}`, {
+            await axios.put(`https://192.168.1.7:5001/api/user/${id}`, {
                 name: e.name,
                 dob: e.dob,
                 phoneNumber: e.phoneNumber,
@@ -82,7 +82,7 @@ export default function ManageSingleUserModal({ handleDeleteUser }) {
         const newPwd = randomPwd(10)
         setLoading(true)
         try {
-            await axios.put(`http://192.168.1.7:5148/api/account/forgot-password`, {
+            await axios.put(`https://192.168.1.7:5001/api/account/forgot-password`, {
                 userId: id,
                 password: newPwd
             })

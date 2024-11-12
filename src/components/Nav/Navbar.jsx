@@ -11,7 +11,7 @@ const Navbar = ({ user, handleLogout }) => {
     const fetchData = async () => {
         setLoading(true)
         try {
-            const { data } = await axios.get(`http://192.168.1.7:5148/api/user/${user.name}`)
+            const { data } = await axios.get(`https://192.168.1.7:5001/api/user/${user.name}`)
             setProfileImage(data.userInformation.profileImage)
             setError(false) // Đặt lại lỗi khi kết nối thành công
         } catch (err) {

@@ -20,11 +20,11 @@ export default function CreateCourse({ setLoading }) {
         const fetchData = async () => {
             setLoading(true)
             try {
-                const { data: coursesData } = await axios.get('http://192.168.1.7:5148/api/course')
+                const { data: coursesData } = await axios.get('https://192.168.1.7:5001/api/course')
                 setCourses(coursesData)
 
                 const { data: facultiesData } = await axios.get(
-                    'http://192.168.1.7:5148/api/faculty/'
+                    'https://192.168.1.7:5001/api/faculty/'
                 )
                 setFaculties(facultiesData)
             } catch (err) {
@@ -79,19 +79,19 @@ export default function CreateCourse({ setLoading }) {
 
         setLoading(true)
         try {
-            await axios.post('http://192.168.1.7:5148/api/course-classroom', data)
+            await axios.post('https://192.168.1.7:5001/api/course-classroom', data)
 
             for (let session of schedule) {
                 try {
                     // Kiểm tra xung đột lịch trước khi gửi
                     const response = await axios.post(
-                        'http://192.168.1.7:5148/api/schedules',
+                        'https://192.168.1.7:5001/api/schedules',
                         session
                     )
                 } catch (err) {
                     // Xử lý lỗi ở đây nếu việc đăng lịch không thành công
                     await axios.delete(
-                        `http://192.168.1.7:5148/api/course-classroom/${e.courseClassId}`
+                        `https://192.168.1.7:5001/api/course-classroom/${e.courseClassId}`
                     )
                     setModal({
                         isShow: true,
@@ -131,7 +131,7 @@ export default function CreateCourse({ setLoading }) {
         setLoading(true)
         try {
             const { data: teachersData } = await axios.get(
-                `http://192.168.1.7:5148/api/faculty/users/${facultyId}`
+                `https://192.168.1.7:5001/api/faculty/users/${facultyId}`
             )
             setTeachers(teachersData)
         } catch (err) {
