@@ -134,11 +134,11 @@ export default function EduProgramDetail({ setLoading }) {
             setLoading(true)
             try {
                 const { data: programData } = await axios.get(
-                    `https://192.168.1.7:5001/api/education-program/${id}`
+                    `https://10.10.36.197:5001/api/education-program/${id}`
                 )
                 setProgram(programData)
                 const { data: coursesData } = await axios.get(
-                    `https://192.168.1.7:5001/api/education-program/course/${id}`
+                    `https://10.10.36.197:5001/api/education-program/course/${id}`
                 )
                 setCourses(
                     coursesData
@@ -168,7 +168,7 @@ export default function EduProgramDetail({ setLoading }) {
     const handleDelete = async () => {
         setLoading(true)
         try {
-            await axios.delete(`https://192.168.1.7:5001/api/education-program/${id}`)
+            await axios.delete(`https://10.10.36.197:5001/api/education-program/${id}`)
             navigate.push('/auth/manage-program/list/')
         } catch (err) {
             console.log(err)

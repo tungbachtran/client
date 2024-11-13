@@ -22,7 +22,7 @@ export default function ManageSingleUserModal() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const { data } = await axios.get(`https://192.168.1.7:5001/api/course/${id}`)
+                const { data } = await axios.get(`https://10.10.36.197:5001/api/course/${id}`)
                 setFormData(data)
                 formRef.current.setFieldsValue({
                     courseId: id,

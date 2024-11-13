@@ -19,7 +19,7 @@ export default function CreateFaculty() {
             facultyId: e.id
         }
         try {
-            await axios.post('https://192.168.1.7:5001/api/faculty', data)
+            await axios.post('https://10.10.36.197:5001/api/faculty', data)
             setModal({
                 isShow: true,
                 Fn: () => setModal({ isShow: false }),

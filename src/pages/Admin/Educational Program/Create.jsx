@@ -23,7 +23,7 @@ export default function CreateAccount({ setLoading }) {
             name: e.name
         }
         try {
-            await axios.post('https://192.168.1.7:5001/api/education-program', data)
+            await axios.post('https://10.10.36.197:5001/api/education-program', data)
 
             setModal({
                 isShow: true,

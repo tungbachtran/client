@@ -56,7 +56,7 @@ export default function ChangePasswordModal({ user, handleLogout }) {
             return
         }
         try {
-            await axios.put('https://192.168.1.7:5001/api/account/reset-password', {
+            await axios.put('https://10.10.36.197:5001/api/account/reset-password', {
                 username: user.name,
                 oldPassword: oldPwd,
                 newPassword: newPwd

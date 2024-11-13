@@ -45,7 +45,7 @@ export default function ForgotPassword({ setLoading }) {
         e.preventDefault()
         setLoading(true)
         try {
-            await axios.post(`https://192.168.1.7:5001/api/account/send-email/${userId}/${email}`)
+            await axios.post(`https://10.10.36.197:5001/api/account/send-email/${userId}/${email}`)
             setIsEmailCorrect(true)
             navigate.push('/unauth/forgot-password/verify')
         } catch (err) {
@@ -65,7 +65,7 @@ export default function ForgotPassword({ setLoading }) {
         setLoading(true)
         try {
             await axios.post(
-                `https://192.168.1.7:5001/api/account/verify-token/${verifyToken}/${userId}`
+                `https://10.10.36.197:5001/api/account/verify-token/${verifyToken}/${userId}`
             )
             setIsVerified(true)
             navigate.push('/unauth/forgot-password/new-password')
@@ -84,7 +84,7 @@ export default function ForgotPassword({ setLoading }) {
     const handleChangePassword = async (e) => {
         e.preventDefault()
         try {
-            await axios.put('https://192.168.1.7:5001/api/account/forgot-password', {
+            await axios.put('https://10.10.36.197:5001/api/account/forgot-password', {
                 userId: userId,
                 password: newPwd
             })

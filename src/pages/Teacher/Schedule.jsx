@@ -70,13 +70,13 @@ export default function TeahcerSchedule({ user, setLoading }) {
         setLoading(true)
         try {
             const { data: courseClassroomsData } = await axios.get(
-                `https://192.168.1.7:5001/api/user/teacher/course-classroom/${user.name}`
+                `https://10.10.36.197:5001/api/user/teacher/course-classroom/${user.name}`
             )
             for (let index = 0; index < courseClassroomsData.length; index++) {
                 let item = courseClassroomsData[index]
                 if (item.courseClassroom.isComplete === true) continue
                 const { data: course } = await axios.get(
-                    `https://192.168.1.7:5001/api/course/${item.courseClassroom.courseId}`
+                    `https://10.10.36.197:5001/api/course/${item.courseClassroom.courseId}`
                 )
                 // if (course.isAvailable === true)
                 //     continue
