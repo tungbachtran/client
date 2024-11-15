@@ -154,32 +154,34 @@ export default function CourseDocuments({ setLoading, user }) {
                 byteNumbers[i] = byteCharacters.charCodeAt(i);
             }
     
-            // Get the MIME type and determine the file extension
-            const mimeType = doc.mimeType || 'application/octet-stream';
-            
-            // Default file extension based on MIME type
-            let fileExtension = 'file';  // Default fallback
-            if (mimeType === 'application/pdf') {
-                fileExtension = 'pdf';
-            } else if (mimeType === 'application/msword' || mimeType === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
-                fileExtension = 'docx';
-            } else if (mimeType === 'application/vnd.ms-excel' || mimeType === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet') {
-                fileExtension = 'xlsx';
-            } else if (mimeType === 'image/jpeg') {
-                fileExtension = 'jpg';
-            } else if (mimeType === 'image/png') {
-                fileExtension = 'png';
-            }
-            // Add more cases as necessary for other MIME types.
+            // Tạo một bảng ánh xạ (mapping) MIME type với file extension
+            const mimeTypeMap = {
+                'application/pdf': 'pdf',
+                'application/msword': 'doc',
+                'application/vnd.openxmlformats-officedocument.wordprocessingml.document': 'docx',
+                'application/vnd.ms-excel': 'xls',
+                'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': 'xlsx',
+                'image/jpeg': 'jpg',
+                'image/png': 'png',
+                'application/zip': 'zip',
+                'text/plain': 'txt',
+                // Thêm các MIME type khác vào nếu cần thiết
+            };
     
-            // Create a Blob with the binary data and MIME type
+            // Lấy MIME type hoặc mặc định 'application/octet-stream'
+            const mimeType = doc.mimeType || 'application/octet-stream';
+    
+            // Tìm extension từ bảng ánh xạ, nếu không tìm thấy thì dùng 'file' làm mặc định
+            const fileExtension = mimeTypeMap[mimeType] || 'file';
+    
+            // Tạo một Blob với dữ liệu nhị phân và MIME type
             const blob = new Blob([byteNumbers], { type: mimeType });
             const url = URL.createObjectURL(blob);
     
-            // Create an anchor element to trigger the download
+            // Tạo một anchor element để trigger download
             const a = document.createElement('a');
             a.href = url;
-            a.download = `${doc.documentId}.${fileExtension}`; // Use documentId and the determined extension for the filename
+            a.download = `${doc.documentId}.${fileExtension}`;  // Dùng documentId và extension đã tìm được cho tên file
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
@@ -190,6 +192,7 @@ export default function CourseDocuments({ setLoading, user }) {
             console.error('Download failed:', error);
         }
     };
+    
     
     
 
