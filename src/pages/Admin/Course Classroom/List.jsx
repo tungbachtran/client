@@ -148,7 +148,7 @@ export default function CourseList({ setLoading }) {
         console.log(index, newCourse)
         setLoading(true)
         try {
-            await axios.put(`https://10.10.36.197:5001/api/course`, newCourse)
+            await axios.put(`https://192.168.1.7:5001/api/course`, newCourse)
             courses[index].isAvailable = e
         } catch (err) {
             console.log(err)
@@ -160,7 +160,7 @@ export default function CourseList({ setLoading }) {
     const handleFinishSemester = async () => {
         setLoading(true)
         try {
-            await axios.put(`https://10.10.36.197:5001/api/course-classroom/finish-all-classes`)
+            await axios.put(`https://192.168.1.7:5001/api/course-classroom/finish-all-classes`)
             setModal({
                 isShow: true,
                 Fn: () => setModal({ ...modal, isShow: false }),
@@ -184,7 +184,7 @@ export default function CourseList({ setLoading }) {
         const fetchData = async () => {
             setLoading(true)
             try {
-                const { data } = await axios.get('https://10.10.36.197:5001/api/course/')
+                const { data } = await axios.get('https://192.168.1.7:5001/api/course/')
                 setCourses(data)
             } catch (err) {
                 console.log(err)

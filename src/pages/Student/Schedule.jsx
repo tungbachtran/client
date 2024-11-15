@@ -75,12 +75,12 @@ export default function Schedule({ user, setLoading }) {
         try {
             // Lấy danh sách các lớp học của user
             const { data: courseClassroomsData } = await axios.get(
-                `https://10.10.36.197:5001/api/course-classroom/user/${user.name}`
+                `https://192.168.1.7:5001/api/course-classroom/user/${user.name}`
             )
 
             // Tạo danh sách các yêu cầu API để lấy thông tin khóa học
             const courseRequests = courseClassroomsData.map((item) =>
-                axios.get(`https://10.10.36.197:5001/api/course/${item.courseClassroom.courseId}`)
+                axios.get(`https://192.168.1.7:5001/api/course/${item.courseClassroom.courseId}`)
             )
 
             // Chờ tất cả các yêu cầu API hoàn thành

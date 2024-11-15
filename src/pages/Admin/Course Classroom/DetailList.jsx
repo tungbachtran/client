@@ -171,7 +171,7 @@ export default function CourseClassList({ setLoading }) {
 
     const handleDelete = async (courseClassId) => {
         try {
-            await axios.delete(`https://10.10.36.197:5001/api/course-classroom/${courseClassId}`)
+            await axios.delete(`https://192.168.1.7:5001/api/course-classroom/${courseClassId}`)
             setCourseClasses(courseClasses.filter((item) => item.courseClassId !== courseClassId))
         } catch (err) {
             console.log(err)
@@ -183,10 +183,10 @@ export default function CourseClassList({ setLoading }) {
             setLoading(true)
             try {
                 const { data: course } = await axios.get(
-                    `https://10.10.36.197:5001/api/course/${courseId}`
+                    `https://192.168.1.7:5001/api/course/${courseId}`
                 )
                 const { data: courseClasses } = await axios.get(
-                    `https://10.10.36.197:5001/api/course-classroom/course/${courseId}`
+                    `https://192.168.1.7:5001/api/course-classroom/course/${courseId}`
                 )
                 console.log('classes: ', courseClasses)
                 const data = []

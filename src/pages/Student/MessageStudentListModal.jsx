@@ -15,7 +15,7 @@ function MessageStudentListModal({ messages, isVisible, onClose, info, classId }
                 const messagesWithNames = await Promise.all(
                     messages.map(async (message) => {
                         const { data } = await axios.get(
-                            `https://10.10.36.197:5001/api/user/${message.senderId}`
+                            `https://192.168.1.7:5001/api/user/${message.senderId}`
                         )
                         return {
                             ...message,
@@ -35,7 +35,7 @@ function MessageStudentListModal({ messages, isVisible, onClose, info, classId }
     // Kết nối tới SignalR khi component mount
     useEffect(() => {
         const connect = new signalR.HubConnectionBuilder()
-            .withUrl('https://10.10.36.197:5001/chatHub') // URL tới SignalR hub
+            .withUrl('https://192.168.1.7:5001/chatHub') // URL tới SignalR hub
             .withAutomaticReconnect()
             .build()
 
@@ -76,7 +76,7 @@ function MessageStudentListModal({ messages, isVisible, onClose, info, classId }
         if (newMessage.trim() && connection) {
             try {
                 // Gửi thông tin người dùng từ API
-                const { data } = await axios.get(`https://10.10.36.197:5001/api/user/${info}`)
+                const { data } = await axios.get(`https://192.168.1.7:5001/api/user/${info}`)
                 const senderName = data.userInformation.name || 'Unknown'
 
                 // Gửi tin nhắn qua SignalR với thông tin đầy đủ

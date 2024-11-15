@@ -117,7 +117,7 @@ export default function CourseList({ setLoading, user }) {
             setLoading(true)
             try {
                 const { data } = await axios.get(
-                    `https://10.10.36.197:5001/api/course/user/${user.name}`
+                    `https://192.168.1.7:5001/api/course/user/${user.name}`
                 )
                 setCourses(data)
             } catch (err) {

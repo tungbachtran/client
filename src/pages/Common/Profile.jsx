@@ -41,7 +41,7 @@ export default function Profile({ user, handleLogout, setLoading }) {
     const fetchData = async () => {
         setLoading(true)
         try {
-            const { data } = await axios.get(`https://10.10.36.197:5001/api/user/${user.name}`)
+            const { data } = await axios.get(`https://192.168.1.7:5001/api/user/${user.name}`)
             setInfo(data)
         } catch (err) {
             alert('Không thể kết nối đến server')
@@ -64,7 +64,7 @@ export default function Profile({ user, handleLogout, setLoading }) {
         }
         setLoading(true)
         try {
-            await axios.put(`https://10.10.36.197:5001/api/user/${user.name}`, data)
+            await axios.put(`https://192.168.1.7:5001/api/user/${user.name}`, data)
             fetchData()
             setIsEditing(false)
         } catch (err) {

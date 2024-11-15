@@ -164,7 +164,7 @@ export default function CourseClassList({ setLoading, user }) {
     const handleRegister = async (courseClassId) => {
         try {
             await axios.post(
-                `https://10.10.36.197:5001/api/course-classroom/user/${user.name}/${courseClassId}`
+                `https://192.168.1.7:5001/api/course-classroom/user/${user.name}/${courseClassId}`
             ) //user.name = userId
             setModal({
                 isShow: true,
@@ -195,7 +195,7 @@ export default function CourseClassList({ setLoading, user }) {
             setLoading(true)
             try {
                 const { data: course } = await axios.get(
-                    `https://10.10.36.197:5001/api/course/${courseId}`
+                    `https://192.168.1.7:5001/api/course/${courseId}`
                 )
 
                 if (!course.isAvailable) {
@@ -203,7 +203,7 @@ export default function CourseClassList({ setLoading, user }) {
                 }
 
                 const { data: courseClasses } = await axios.get(
-                    `https://10.10.36.197:5001/api/course-classroom/course/${courseId}`
+                    `https://192.168.1.7:5001/api/course-classroom/course/${courseId}`
                 )
                 console.log('classes: ', courseClasses)
                 const data = []

@@ -171,13 +171,13 @@ export default function Score({ setLoading, user }) {
             let data = []
             try {
                 const { data: scoreData } = await axios.get(
-                    `https://10.10.36.197:5001/api/score/student/${user.name}`
+                    `https://192.168.1.7:5001/api/score/student/${user.name}`
                 )
 
                 // Combine fetching course details and filtering in a single loop
                 for (const item of scoreData) {
                     const { data: course } = await axios.get(
-                        `https://10.10.36.197:5001/api/course/${item.courseClassroom.courseId}`
+                        `https://192.168.1.7:5001/api/course/${item.courseClassroom.courseId}`
                     )
 
                     if (!course.isAvailable || item.courseClassroom.isComplete) {

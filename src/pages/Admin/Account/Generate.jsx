@@ -112,7 +112,7 @@ export default function GenerateAccounts({ setLoading }) {
             formData.append('fileName', file.name)
             // post file to api
             axios
-                .post('https://10.10.36.197:5001/api/account/upload-file', formData)
+                .post('https://192.168.1.7:5001/api/account/upload-file', formData)
                 .then((res) => {
                     setData(
                         res.data.map((item, index) => {

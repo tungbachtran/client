@@ -146,7 +146,7 @@ export default function CourseInChargeDetail({ setLoading }) {
         setLoading(true)
         try {
             let { data: scoreData } = await axios.get(
-                `https://10.10.36.197:5001/api/score/class/${courseClassId}`
+                `https://192.168.1.7:5001/api/score/class/${courseClassId}`
             )
             const formattedScore = scoreData.map((item) => {
                 return {
@@ -207,7 +207,7 @@ export default function CourseInChargeDetail({ setLoading }) {
         // Gửi dữ liệu cập nhật lên server
         try {
             setLoading(true)
-            await axios.put(`https://10.10.36.197:5001/api/score/${studentId}/${courseClassId}`, {
+            await axios.put(`https://192.168.1.7:5001/api/score/${studentId}/${courseClassId}`, {
                 excerciseScore: parseFloat(scoreBT),
                 midTermScore: parseFloat(scoreGK),
                 finalTermScore: parseFloat(scoreCK),
