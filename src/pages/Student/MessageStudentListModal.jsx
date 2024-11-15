@@ -55,17 +55,7 @@ function MessageStudentListModal({ messages, isVisible, onClose, info, classId }
                             timestamp: timestamp || new Date().toISOString()
                         }
                         // Kiểm tra nếu tin nhắn không trùng, thêm vào danh sách
-                        setMessagesWithSenderNames((prevMessages) => {
-                            // Kiểm tra nếu tin nhắn đã có trong danh sách chưa
-                            if (
-                                !prevMessages.some(
-                                    (msg) => msg.content === message && msg.senderName === user
-                                )
-                            ) {
-                                return [...prevMessages, newMessageData]
-                            }
-                            return prevMessages
-                        })
+                        setMessagesWithSenderNames(prevMessages => [...prevMessages, newMessageData]);
                     }
                 })
             })
