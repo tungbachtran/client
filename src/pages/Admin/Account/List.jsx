@@ -67,7 +67,7 @@ export default function UserList({ setLoading }) {
     useEffect(() => {
         setLoading(true)
         axios
-            .get('https://192.168.1.7:5001/api/faculty/')
+            .get('https://192.168.1.7:5001/api/faculty')
             .then((res) => {
                 setFaculties(res.data)
                 setLoading(false)
