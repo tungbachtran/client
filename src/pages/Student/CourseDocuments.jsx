@@ -145,35 +145,53 @@ export default function CourseDocuments({ setLoading, user }) {
     }
 
     const handleDownload = (doc) => {
-        // Use 'doc' instead of 'document' to avoid conflict
-        const base64Data = doc.details // This should be your base64 string
-
-        // Decode base64 string to binary
-        const byteCharacters = atob(base64Data) // Decode base64
-        const byteNumbers = new Uint8Array(byteCharacters.length)
-        for (let i = 0; i < byteCharacters.length; i++) {
-            byteNumbers[i] = byteCharacters.charCodeAt(i)
+        try {
+            // Decode the base64 string to binary data
+            const base64Data = doc.details;
+            const byteCharacters = atob(base64Data);
+            const byteNumbers = new Uint8Array(byteCharacters.length);
+            for (let i = 0; i < byteCharacters.length; i++) {
+                byteNumbers[i] = byteCharacters.charCodeAt(i);
+            }
+    
+            // Get the MIME type and determine the file extension
+            const mimeType = doc.mimeType || 'application/octet-stream';
+            
+            // Default file extension based on MIME type
+            let fileExtension = 'file';  // Default fallback
+            if (mimeType === 'application/pdf') {
+                fileExtension = 'pdf';
+            } else if (mimeType === 'application/msword' || mimeType === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
+                fileExtension = 'docx';
+            } else if (mimeType === 'application/vnd.ms-excel' || mimeType === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet') {
+                fileExtension = 'xlsx';
+            } else if (mimeType === 'image/jpeg') {
+                fileExtension = 'jpg';
+            } else if (mimeType === 'image/png') {
+                fileExtension = 'png';
+            }
+            // Add more cases as necessary for other MIME types.
+    
+            // Create a Blob with the binary data and MIME type
+            const blob = new Blob([byteNumbers], { type: mimeType });
+            const url = URL.createObjectURL(blob);
+    
+            // Create an anchor element to trigger the download
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${doc.documentId}.${fileExtension}`; // Use documentId and the determined extension for the filename
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+    
+            // Clean up by revoking the URL
+            URL.revokeObjectURL(url);
+        } catch (error) {
+            console.error('Download failed:', error);
         }
-
-        // Create a Blob with the binary data and specify the appropriate MIME type
-        const blob = new Blob([byteNumbers], { type: 'application/octet-stream' }) // Change MIME type as needed
-
-        // Generate a URL for the blob
-        const url = URL.createObjectURL(blob)
-
-        // Create an anchor element to trigger the download
-        const a = window.document.createElement('a') // Use window.document here
-        a.href = url
-        a.download = `${doc.documentId}.file` // Set the desired file name and extension
-
-        // Append, click, and remove the anchor to start the download
-        window.document.body.appendChild(a) // Use window.document.body here
-        a.click()
-        window.document.body.removeChild(a) // Use window.document.body here
-
-        // Revoke the object URL to free memory
-        URL.revokeObjectURL(url)
-    }
+    };
+    
+    
 
     useEffect(() => {
         const fetchData = async () => {

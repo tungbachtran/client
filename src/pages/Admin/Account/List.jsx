@@ -116,7 +116,7 @@ export default function UserList({ setLoading }) {
             }
         ]
         axios
-            .get(`https://192.168.1.7:5001/faculty/classes/${data.facultyId}`)
+            .get(`https://192.168.1.7:5001/api/faculty/classes/${data.facultyId}`)
             .then((res) => {
                 temp = temp.concat(
                     res.data.map((_class) => {
