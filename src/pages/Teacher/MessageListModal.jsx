@@ -3,7 +3,7 @@ import { Modal, Input, Button } from 'antd'
 import axios from 'axios'
 import * as signalR from '@microsoft/signalr'
 
-function MessageStudentListModal({ messages, isVisible, onClose, info, classId, setMessages }) {
+function MessageListModal({ messages, isVisible, onClose, info, classId, setMessages }) {
     const [newMessage, setNewMessage] = useState('')
     const [messagesWithSenderNames, setMessagesWithSenderNames] = useState([])
     const [connection, setConnection] = useState(null)
@@ -133,6 +133,12 @@ function MessageStudentListModal({ messages, isVisible, onClose, info, classId, 
                     placeholder="Nhập tin nhắn"
                     value={newMessage}
                     onChange={(e) => setNewMessage(e.target.value)}
+                    onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                            e.preventDefault()
+                            handleSendMessage()
+                        }
+                    }}
                     style={{ flex: 1, marginRight: '10px' }}
                 />
                 <Button type="primary" onClick={handleSendMessage}>
@@ -143,4 +149,4 @@ function MessageStudentListModal({ messages, isVisible, onClose, info, classId, 
     )
 }
 
-export default MessageStudentListModal
+export default MessageListModal

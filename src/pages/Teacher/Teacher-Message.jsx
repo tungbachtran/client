@@ -103,19 +103,23 @@ function MessageTeacher({ user, setLoading }) {
     }
 
     const handleViewMessages = async (courseClassId) => {
+        setMessages([]) // Làm rỗng messages trước khi mở modal
+        setSelectedClassId(courseClassId) // Cập nhật classId được chọn
         try {
-            setSelectedClassId(courseClassId)
-            setLoading(true) // Bật trạng thái loading trước khi gọi API
+            setLoading(true) // Hiển thị trạng thái loading
             const { data: fetchedMessages } = await axios.get(
                 `https://192.168.1.7:5001/api/messages/${courseClassId}`
             )
-            setMessages(fetchedMessages) // Cập nhật danh sách tin nhắn khi nhấn "Xem"
+            setMessages(fetchedMessages) // Cập nhật tin nhắn từ API
+            console.log(messages) 
         } catch (err) {
             console.error(err) // Xử lý lỗi nếu có
         } finally {
-            setLoading(false) // Tắt loading sau khi gọi API xong
+            setLoading(false) // Tắt trạng thái loading
         }
     }
+    
+    
 
     useEffect(() => {
         const fetchData = async () => {
@@ -184,8 +188,11 @@ function MessageTeacher({ user, setLoading }) {
                 info={user.name}
                 setMessages={setMessages}
                 classId={selectedClassId}
-                isVisible={messages.length > 0} // Nếu có tin nhắn, modal sẽ hiển thị
-                onClose={() => setMessages([])} // Đóng modal khi nhấn "Đóng"
+                isVisible={selectedClassId !== null} // Modal luôn hiển thị nếu có classId
+                onClose={() => {
+                    setSelectedClassId(null) // Đóng modal, xóa classId
+                    setMessages([]) // Đặt lại tin nhắn rỗng
+                }}
             />
         </div>
     )

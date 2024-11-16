@@ -133,6 +133,12 @@ function MessageStudentListModal({ messages, isVisible, onClose, info, classId }
                     placeholder="Nhập tin nhắn"
                     value={newMessage}
                     onChange={(e) => setNewMessage(e.target.value)}
+                    onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                            e.preventDefault()
+                            handleSendMessage()
+                        }
+                    }}
                     style={{ flex: 1, marginRight: '10px' }}
                 />
                 <Button type="primary" onClick={handleSendMessage}>
